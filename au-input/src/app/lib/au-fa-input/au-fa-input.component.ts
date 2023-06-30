@@ -14,9 +14,7 @@ export class AuFaInputComponent implements OnInit {
   ngOnInit() {}
 
   get classes(): unknown {
-    const cssClasses = {
-      fa: true,
-    };
+    const cssClasses = {};
 
     if (this.icon) {
       cssClasses["fa-" + this.icon] = true;
