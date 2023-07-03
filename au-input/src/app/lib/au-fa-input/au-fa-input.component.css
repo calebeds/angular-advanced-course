@@ -13,7 +13,7 @@
   display: inline-block;
 }
 
-input {
+:host ::ng-deep input {
   border: none;
   outline: none;
   height: 100%;
