@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { AuFaInputComponent } from './au-fa-input.component';
+import { AuFaInputComponent } from "./au-fa-input.component";
 
-describe('AuFaInputComponent', () => {
+describe("AuFaInputComponent", () => {
   let component: AuFaInputComponent;
   let fixture: ComponentFixture<AuFaInputComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AuFaInputComponent ]
-    })
-    .compileComponents();
+      declarations: [AuFaInputComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('AuFaInputComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
