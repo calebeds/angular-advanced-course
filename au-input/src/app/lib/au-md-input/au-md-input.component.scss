@@ -2,4 +2,7 @@
 
 @import "../common/default-theme.css";
 
-@import "_au-fa-input-red-theme.scss";
+.md-icon {
+  line-height: 21px;
+  vertical-align: middle;
+}
