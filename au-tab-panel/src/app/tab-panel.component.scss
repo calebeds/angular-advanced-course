@@ -1,14 +1,9 @@
-
-
 @import "./theme";
 
-
 .tab-panel {
-
   box-shadow: $box-shadow;
 
   .tab-panel-buttons {
-
     list-style: none;
     text-align: left;
     margin-bottom: 0;
@@ -32,22 +27,9 @@
 
       &.selected {
         background: white;
-        color:$text;
+        color: $text;
         border-bottom: 1px solid white;
       }
-
     }
-
   }
-
-  .tab {
-    border-left: $tab-border;
-    border-right: $tab-border;
-    border-bottom: $tab-border;
-    padding: 15px 25px;
-  }
-
-
 }
-
-

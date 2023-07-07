@@ -11,8 +11,8 @@
     "e2e": "ng e2e"
   },
   "private": false,
-
   "dependencies": {
+    "8": "0.0.1",
     "@angular/common": "7.0.0",
     "@angular/compiler": "7.0.0",
     "@angular/core": "7.0.0",
@@ -23,8 +23,9 @@
     "@angular/router": "7.0.0",
     "core-js": "^2.4.1",
     "rxjs": "6.3.3",
-    "zone.js": "0.8.26",
-    "rxjs-compat": "^6.0.0-rc.0"
+    "rxjs-compat": "^6.0.0-rc.0",
+    "yarn": "^1.22.19",
+    "zone.js": "0.8.26"
   },
   "devDependencies": {
     "@angular/cli": "^7.0.0",

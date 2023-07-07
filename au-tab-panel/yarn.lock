@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"8@0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/8/-/8-0.0.1.tgz#27d049aaac32267b9c7377b9472bf2df15b53e28"
+  integrity sha512-MPiOAlzVNIMcfUI/2kcUYRvGb9KROnAkOy9R7+47zwpAGlS7vkzfd8ivRpXi6dPfhjzDrzh0okNgczo3x6EUsQ==
+
 "@angular-devkit/architect@0.10.2":
   version "0.10.2"
   resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.10.2.tgz#1d19f305f717cd55d8560ea731cfc336edff0978"
@@ -6989,6 +6994,11 @@ yargs@~3.10.0:
     cliui "^2.1.0"
     decamelize "^1.0.0"
     window-size "0.1.0"
+
+yarn@^1.22.19:
+  version "1.22.19"
+  resolved "https://registry.yarnpkg.com/yarn/-/yarn-1.22.19.tgz#4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447"
+  integrity sha512-/0V5q0WbslqnwP91tirOvldvYISzaqhClxzyUKXYxs07yUILIs5jx/k6CFe8bvKSkds5w+eiOqta39Wk3WxdcQ==
 
 yeast@0.1.2:
   version "0.1.2"
