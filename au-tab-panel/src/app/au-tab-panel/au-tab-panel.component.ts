@@ -16,8 +16,6 @@ export class AuTabPanelComponent implements AfterContentInit {
   @ContentChildren(AuTabComponent)
   tabs: QueryList<AuTabComponent>;
 
-  constructor() {}
-
   ngAfterContentInit(): void {
     const selectedTab = this.tabs.find((tab) => tab.selected);
 
@@ -30,5 +28,11 @@ export class AuTabPanelComponent implements AfterContentInit {
     this.tabs.forEach((tab) => (tab.selected = false));
 
     tab.selected = true;
+  }
+
+  get tabsContext() {
+    return {
+      tabs: this.tabs,
+    };
   }
 }
