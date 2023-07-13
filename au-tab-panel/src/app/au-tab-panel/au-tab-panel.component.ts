@@ -2,8 +2,11 @@ import {
   AfterContentInit,
   Component,
   ContentChildren,
+  Input,
   OnInit,
   QueryList,
+  TemplateRef,
+  ViewChild,
 } from "@angular/core";
 import { AuTabComponent } from "app/au-tab/au-tab.component";
 
@@ -15,6 +18,9 @@ import { AuTabComponent } from "app/au-tab/au-tab.component";
 export class AuTabPanelComponent implements AfterContentInit {
   @ContentChildren(AuTabComponent)
   tabs: QueryList<AuTabComponent>;
+
+  @Input()
+  headerTemplate: TemplateRef<unknown>;
 
   ngAfterContentInit(): void {
     const selectedTab = this.tabs.find((tab) => tab.selected);
