@@ -52,4 +52,23 @@ describe("AppComponent", () => {
 
     expect(contactEmail).toBeTruthy();
   }));
+
+  it("should switch to the login Tab", async(() => {
+    const tabButtons = tabPanel.queryAll(By.css(".tab-panel-buttons li"));
+
+    tabButtons[0].nativeElement.click();
+
+    fixture.detectChanges();
+
+    const loginEmail = tabPanel.query(By.css(".login-email"));
+
+    expect(loginEmail).toBeTruthy();
+
+    const selectedButton = tabPanel.query(
+      By.css(".tab-panel-buttons li.selected")
+    ).nativeElement;
+
+    expect(selectedButton).toBeTruthy();
+    expect(selectedButton.textContent).toBe(" Login ");
+  }));
 });
