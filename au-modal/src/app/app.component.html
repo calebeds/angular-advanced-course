@@ -82,7 +82,10 @@
         </au-tab>
       </au-tab-panel>
     </ng-template>
-    <au-modal class="auth-modal" [body]="authModalBody"> </au-modal>
+
+    <ng-template [auModalOpenOnClick]="[loginButton, signUpButton]">
+      <au-modal class="auth-modal" [body]="authModalBody"> </au-modal>
+    </ng-template>
 
     <div class="modal-buttons">
       <button #loginButton>Login</button>
