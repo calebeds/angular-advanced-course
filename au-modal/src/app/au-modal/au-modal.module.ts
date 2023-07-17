@@ -1,30 +1,10 @@
-
-
-
-
-import {ModuleWithProviders, NgModule} from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-
+import { ModuleWithProviders, NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { AuModalComponent } from './au-modal.component';
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ],
-  exports: []
+  declarations: [AuModalComponent],
+  imports: [CommonModule],
+  exports: [],
 })
-export class AuModalModule {
-
-
-
-
-
-
-
-
-
-}
-
-
-
+export class AuModalModule {}
