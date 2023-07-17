@@ -86,6 +86,8 @@
     <au-modal
       class="auth-modal"
       [body]="authModalBody"
+      [hideOnEsc]="true"
+      [hideOnClickOutside]="false"
       *auModalOpenOnClick="[loginButton, signUpButton]"
     >
     </au-modal>
