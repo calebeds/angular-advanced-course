@@ -12,6 +12,9 @@ export class AuModalComponent implements OnInit {
   body: TemplateRef<unknown>;
 
   @Input()
+  context: unknown;
+
+  @Input()
   hideOnEsc = true;
 
   @Input()
