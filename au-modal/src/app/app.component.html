@@ -100,10 +100,14 @@
       <i class="fa fa-times" (click)="modal.close()"></i>
     </au-modal>
 
+    <au-modal id="testModal" *auModalOpenOnClick="testButton"></au-modal>
+
     <div class="modal-buttons">
       <button #loginButton (click)="setLoginActive(true)">Login</button>
 
       <button #signUpButton (click)="setLoginActive(false)">Sign Up</button>
+
+      <button id="testButton" #testButton>TestButton</button>
     </div>
   </div>
 </body>
