@@ -1,6 +1,12 @@
-import { Directive, ElementRef, Input, OnInit } from "@angular/core";
+import {
+  Directive,
+  ElementRef,
+  HostListener,
+  Input,
+  OnInit,
+} from "@angular/core";
 import * as includes from "lodash.includes";
-import { SPECIAL_CHARACTERS } from "./mask.utils";
+import { SPECIAL_CHARACTERS, TAB } from "./mask.utils";
 @Directive({
   selector: "[au-mask]",
 })
@@ -16,6 +22,13 @@ export class AuMaskDirective implements OnInit {
 
   ngOnInit(): void {
     this.input.value = this.buildPlaceholder();
+  }
+
+  @HostListener("keydown", ["$event", "$event.keyCode"])
+  onKeyDown($event: KeyboardEvent, keycode: number) {
+    if ($event.keyCode !== TAB) {
+      $event.preventDefault();
+    }
   }
 
   buildPlaceholder(): string {
