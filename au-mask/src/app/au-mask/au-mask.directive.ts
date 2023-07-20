@@ -6,7 +6,15 @@ import {
   OnInit,
 } from "@angular/core";
 import * as includes from "lodash.includes";
-import { SPECIAL_CHARACTERS, TAB, overwriteCharAtPosition } from "./mask.utils";
+import * as findLastIndex from "lodash.findlastindex";
+import * as findIndex from "lodash.findindex";
+import {
+  LEFT_ARROW,
+  RIGHT_ARROW,
+  SPECIAL_CHARACTERS,
+  TAB,
+  overwriteCharAtPosition,
+} from "./mask.utils";
 @Directive({
   selector: "[au-mask]",
 })
@@ -25,15 +33,49 @@ export class AuMaskDirective implements OnInit {
   }
 
   @HostListener("keydown", ["$event", "$event.keyCode"])
-  onKeyDown($event: KeyboardEvent, keycode: number) {
+  onKeyDown($event: KeyboardEvent, keyCode: number): void {
     if ($event.keyCode !== TAB) {
       $event.preventDefault();
     }
 
-    const key = String.fromCharCode(keycode),
+    const key = $event.key,
       cursorPos = this.input.selectionStart;
 
+    switch (keyCode) {
+      case LEFT_ARROW: {
+        const valueBeforeCursor = this.input.value.slice(0, cursorPos);
+        const previousPos = findLastIndex(
+          valueBeforeCursor,
+          (char) => !includes(SPECIAL_CHARACTERS, char)
+        );
+
+        if (previousPos >= 0) {
+          this.input.setSelectionRange(previousPos, previousPos);
+        }
+        return;
+      }
+      case RIGHT_ARROW: {
+        this.handleRightArrow(cursorPos);
+        return;
+      }
+    }
+
     overwriteCharAtPosition(this.input, cursorPos, key);
+    this.handleRightArrow(cursorPos);
+  }
+
+  handleRightArrow(cursorPos: number) {
+    const valueAfterCursor = this.input.value.slice(cursorPos + 1);
+    const nextPos = findIndex(
+      valueAfterCursor,
+      (char) => !includes(SPECIAL_CHARACTERS, char)
+    );
+
+    if (nextPos >= 0) {
+      const newCursorPos = cursorPos + nextPos + 1;
+
+      this.input.setSelectionRange(newCursorPos, newCursorPos);
+    }
   }
 
   buildPlaceholder(): string {
