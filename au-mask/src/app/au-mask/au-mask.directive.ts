@@ -15,7 +15,7 @@ import {
   TAB,
   overwriteCharAtPosition,
 } from "./mask.utils";
-import { maskDigitValidators } from "./digit_validators";
+import { maskDigitValidators, neverValidator } from "./digit_validators";
 @Directive({
   selector: "[au-mask]",
 })
@@ -54,7 +54,7 @@ export class AuMaskDirective implements OnInit {
     }
 
     const maskDigit = this.mask.charAt(cursorPos),
-      digitValidator = maskDigitValidators[maskDigit];
+      digitValidator = maskDigitValidators[maskDigit] || neverValidator;
 
     if (digitValidator(key)) {
       overwriteCharAtPosition(this.input, cursorPos, key);
