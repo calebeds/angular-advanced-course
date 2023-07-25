@@ -9,6 +9,7 @@ import * as includes from "lodash.includes";
 import * as findLastIndex from "lodash.findlastindex";
 import * as findIndex from "lodash.findindex";
 import {
+  BACKSPACE,
   LEFT_ARROW,
   RIGHT_ARROW,
   SPECIAL_CHARACTERS,
@@ -42,13 +43,24 @@ export class AuMaskDirective implements OnInit {
     const key = $event.key,
       cursorPos = this.input.selectionStart;
 
-    switch (keyCode) {
-      case LEFT_ARROW: {
+    switch (key) {
+      case "ArrowLeft": {
         this.handleLeftArrow(cursorPos);
         return;
       }
-      case RIGHT_ARROW: {
+      case "ArrowRight": {
         this.handleRightArrow(cursorPos);
+        return;
+      }
+      case "Backspace": {
+        this.handleBackspace(cursorPos);
+        return;
+      }
+      case "Delete": {
+        this.handleDelete(cursorPos);
+        return;
+      }
+      case "Tab": {
         return;
       }
     }
@@ -61,17 +73,33 @@ export class AuMaskDirective implements OnInit {
       this.handleRightArrow(cursorPos);
     }
   }
+  handleDelete(cursorPos: number) {
+    overwriteCharAtPosition(this.input, cursorPos, "_");
+    this.input.setSelectionRange(cursorPos, cursorPos);
+  }
+  handleBackspace(cursorPos: number) {
+    const previousPos = this.calculatePreviousCursorPos(cursorPos);
+
+    if (previousPos >= 0) {
+      overwriteCharAtPosition(this.input, previousPos, "_");
+      this.input.setSelectionRange(previousPos, previousPos);
+    }
+  }
 
   handleLeftArrow(cursorPos: number) {
-    const valueBeforeCursor = this.input.value.slice(0, cursorPos);
-    const previousPos = findLastIndex(
-      valueBeforeCursor,
-      (char) => !includes(SPECIAL_CHARACTERS, char)
-    );
+    const previousPos = this.calculatePreviousCursorPos(cursorPos);
 
     if (previousPos >= 0) {
       this.input.setSelectionRange(previousPos, previousPos);
     }
+  }
+
+  calculatePreviousCursorPos(cursorPos) {
+    const valueBeforeCursor = this.input.value.slice(0, cursorPos);
+    return findLastIndex(
+      valueBeforeCursor,
+      (char) => !includes(SPECIAL_CHARACTERS, char)
+    );
   }
 
   handleRightArrow(cursorPos: number) {
