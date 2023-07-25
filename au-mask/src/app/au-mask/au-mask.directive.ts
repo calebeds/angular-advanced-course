@@ -15,6 +15,7 @@ import {
   TAB,
   overwriteCharAtPosition,
 } from "./mask.utils";
+import { maskDigitValidators } from "./digit_validators";
 @Directive({
   selector: "[au-mask]",
 })
@@ -43,15 +44,7 @@ export class AuMaskDirective implements OnInit {
 
     switch (keyCode) {
       case LEFT_ARROW: {
-        const valueBeforeCursor = this.input.value.slice(0, cursorPos);
-        const previousPos = findLastIndex(
-          valueBeforeCursor,
-          (char) => !includes(SPECIAL_CHARACTERS, char)
-        );
-
-        if (previousPos >= 0) {
-          this.input.setSelectionRange(previousPos, previousPos);
-        }
+        this.handleLeftArrow(cursorPos);
         return;
       }
       case RIGHT_ARROW: {
@@ -60,8 +53,25 @@ export class AuMaskDirective implements OnInit {
       }
     }
 
-    overwriteCharAtPosition(this.input, cursorPos, key);
-    this.handleRightArrow(cursorPos);
+    const maskDigit = this.mask.charAt(cursorPos),
+      digitValidator = maskDigitValidators[maskDigit];
+
+    if (digitValidator(key)) {
+      overwriteCharAtPosition(this.input, cursorPos, key);
+      this.handleRightArrow(cursorPos);
+    }
+  }
+
+  handleLeftArrow(cursorPos: number) {
+    const valueBeforeCursor = this.input.value.slice(0, cursorPos);
+    const previousPos = findLastIndex(
+      valueBeforeCursor,
+      (char) => !includes(SPECIAL_CHARACTERS, char)
+    );
+
+    if (previousPos >= 0) {
+      this.input.setSelectionRange(previousPos, previousPos);
+    }
   }
 
   handleRightArrow(cursorPos: number) {
